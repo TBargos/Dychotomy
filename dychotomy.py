@@ -27,7 +27,7 @@ def find_x_diff_change(x_val: list[float | int]) -> list[float | int]:
 
 
 # Функция дихотомии
-def dych(x_close_zero: list[int | float]) -> list[dict]:
+def dych(x_close_zero: list[int | float]) -> list[dict[str, int | float]]:
     a: int | float
     b: int | float
     c: int | float
@@ -63,6 +63,7 @@ def dych(x_close_zero: list[int | float]) -> list[dict]:
             n -= 1  # Сброс зря созданного шага (компенсация особенности работы while)
 #        print("-" * 160)
         result.append({
+            "n": n,
             "a": a,
             "b": b,
             "c": c,

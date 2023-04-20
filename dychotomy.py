@@ -74,7 +74,7 @@ def dych(x_close_zero: list[int | float]) -> list[dict]:
 
 # Создание листа значений x
 x_values: list[float] = []
-for i in range(-10, 32, 2):  # числа в 10 раз больше, т.к. range не принимает float
+for i in range(-20, 22, 2):  # числа в 10 раз больше, т.к. range не принимает float
     x_values.append(i / 10)
 
 x_close_zero = find_x_diff_change(x_values)  # Нахождение точек перегиба

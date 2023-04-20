@@ -12,8 +12,15 @@ def equation_func(x: int | float) -> float:
 def find_x_diff_change(x_val: list[float | int]) -> list[float | int]:
     x_close_zero: list[int | float] = []
     for i in range(len(x_val))[1:]:  # итерация со второго значения и до конца
+        # Если рядом с точкой перелома есть f(x) = 0, то добавляется она вместо близкой к нулю
+        if equation_func(x_val[i]) == 0:
+            x_close_zero.append(x_val[i])
+            continue
+        elif equation_func(x_val[i-1]) == 0:    # чтобы точка f(x) = 0 не добавилась дважды
+            continue
+        # Если f(x) = 0 рядом нет, то добавляется точка, предшествующая пересечению оси x        
         if (equation_func(x_val[i]) <= 0) and (equation_func(x_val[i - 1]) >= 0):
-            x_close_zero.append(x_values[i-1])
+            x_close_zero.append(x_val[i-1])
         elif (equation_func(x_val[i]) >= 0) and (equation_func(x_val[i - 1]) <= 0):
             x_close_zero.append(x_val[i-1])
     return x_close_zero
@@ -67,7 +74,7 @@ def dych(x_close_zero: list[int | float]) -> list[dict]:
 
 # Создание листа значений x
 x_values: list[float] = []
-for i in range(-20, 22, 2):  # числа в 10 раз больше, т.к. range не принимает float
+for i in range(-10, 32, 2):  # числа в 10 раз больше, т.к. range не принимает float
     x_values.append(i / 10)
 
 x_close_zero = find_x_diff_change(x_values)  # Нахождение точек перегиба
